@@ -24,4 +24,4 @@
 1. 下载并安装 [Godot Engine 4.x   Godot引擎4.x](https://godotengine.org/)。
 2. 克隆本仓库到本地。
 3. 在 Godot 项目管理器中选择 `导入`，并定位到本目录下的 `project.godot` 文件。
-<video src="https://github.com/akumaIshtar/-/releases/download/Video/_.mp4" controls width   宽度="100%"></   & lt;video>
+
