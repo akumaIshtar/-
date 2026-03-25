@@ -1,0 +1,17 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://cdkrmjeq0x6q1"]
+
+[ext_resource type="Texture2D" uid="uid://bus1lc3c42nxm" path="res://Resource/Customize/Item/ItemIcon/5.webp" id="1_lp8d3"]
+[ext_resource type="Script" uid="uid://r2podhfh23lp" path="res://Resource/Customize/Item/ItemScript/item_5.gd" id="2_rtbvr"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("2_rtbvr")
+id = "0005"
+name = "灵"
+icon = ExtResource("1_lp8d3")
+information = ""
+max_stack = 1
+can_use = false
+can_discard = true
+can_sell = false
+metadata/_custom_type_script = "uid://buwhrvp1cflib"

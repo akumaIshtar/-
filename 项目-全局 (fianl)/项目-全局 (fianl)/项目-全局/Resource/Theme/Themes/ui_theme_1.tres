@@ -1,0 +1,32 @@
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://cwyf2tyjj5c8p"]
+
+[ext_resource type="FontFile" uid="uid://xkneq0iar0rr" path="res://Resource/Font/FZOUYXKSJW.TTF" id="1_042po"]
+[ext_resource type="StyleBox" uid="uid://bfhcfaxwasb6p" path="res://Resource/Theme/StyleBoxTexture/SBT_black_1.tres" id="2_sh758"]
+[ext_resource type="StyleBox" uid="uid://c8pfe0xc3o7bx" path="res://Resource/Theme/StyleBoxTexture/SBT_black_trans_1.tres" id="3_pkc7m"]
+[ext_resource type="StyleBox" uid="uid://dqroblnfqrual" path="res://Resource/Theme/StyleBoxTexture/SBT_white_trans_1.tres" id="4_3knc0"]
+[ext_resource type="Texture2D" uid="uid://igx0gmgsg3jp" path="res://Resource/Texture/PanelTexture/panel-030.png" id="5_n63in"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_agdgr"]
+texture = ExtResource("5_n63in")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+region_rect = Rect2(0, 0, 48, 48)
+modulate_color = Color(0, 0, 0, 1)
+
+[resource]
+Button/font_sizes/font_size = 32
+Button/fonts/font = ExtResource("1_042po")
+Button/styles/disabled = ExtResource("2_sh758")
+Button/styles/focus = ExtResource("2_sh758")
+Button/styles/hover = ExtResource("3_pkc7m")
+Button/styles/normal = ExtResource("2_sh758")
+Button/styles/pressed = ExtResource("4_3knc0")
+Label/colors/font_color = Color(1, 1, 1, 1)
+Label/colors/font_shadow_color = Color(0.113725, 0.101961, 0.305882, 0.776471)
+Label/constants/shadow_offset_x = 10
+Label/constants/shadow_offset_y = 5
+Label/font_sizes/font_size = 100
+Label/fonts/font = ExtResource("1_042po")
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_agdgr")

@@ -1,0 +1,137 @@
+[gd_resource type="BehaviorTree" load_steps=38 format=3 uid="uid://kk8fm3a1denl"]
+
+[ext_resource type="Script" uid="uid://xjr6wuj3pvhy" path="res://ai/tasks/navigation/navigation_to_point.gd" id="1_4ij78"]
+[ext_resource type="Script" uid="uid://uugc3fyin6bp" path="res://ai/tasks/is_hit/is_hit.gd" id="1_lii7r"]
+[ext_resource type="Script" uid="uid://q2v004dsrq7v" path="res://ai/tasks/navigation/check_area_condition.gd" id="1_mp5qs"]
+[ext_resource type="Script" uid="uid://be3jd13jfgfuk" path="res://ai/tasks/is_hit/hit_effect.gd" id="2_1k26i"]
+[ext_resource type="Script" uid="uid://cm5ilhkbdhj7k" path="res://ai/tasks/is_hit/realease_soulorb.gd" id="2_bmyds"]
+[ext_resource type="Script" uid="uid://dfdmvklkst02s" path="res://ai/tasks/effection/generate_soulorb.gd" id="4_2cn3e"]
+[ext_resource type="Script" uid="uid://dob2blyrweuoh" path="res://ai/tasks/effection/move_soulorb.gd" id="5_2cn3e"]
+[ext_resource type="Script" uid="uid://dh8ey7vejpbxc" path="res://ai/tasks/effection/generate_laser.gd" id="6_1yb3q"]
+[ext_resource type="Script" uid="uid://dnqhc8ugc230u" path="res://ai/tasks/attack/laser_attack.gd" id="6_2cn3e"]
+
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_bo0je"]
+var/direction/name = &"direction"
+var/direction/type = 5
+var/direction/value = Vector2(0, 0)
+var/direction/hint = 0
+var/direction/hint_string = ""
+var/hp/name = &"hp"
+var/hp/type = 3
+var/hp/value = 0.0
+var/hp/hint = 0
+var/hp/hint_string = ""
+var/target/name = &"target"
+var/target/type = 3
+var/target/value = 0.0
+var/target/hint = 0
+var/target/hint_string = ""
+var/can_move/name = &"can_move"
+var/can_move/type = 1
+var/can_move/value = false
+var/can_move/hint = 0
+var/can_move/hint_string = ""
+
+[sub_resource type="BBVariant" id="BBVariant_0ep58"]
+type = 2
+saved_value = 0
+resource_name = "<null>"
+
+[sub_resource type="BTCheckVar" id="BTCheckVar_2cn3e"]
+variable = &"hp"
+check_type = 2
+value = SubResource("BBVariant_0ep58")
+
+[sub_resource type="BTAction" id="BTAction_jtcwc"]
+script = ExtResource("2_bmyds")
+
+[sub_resource type="BBNode" id="BBNode_1yb3q"]
+saved_value = NodePath("AnimationPlayer")
+resource_name = "AnimationPlayer"
+
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_bmyds"]
+animation_player = SubResource("BBNode_1yb3q")
+animation_name = &"death"
+
+[sub_resource type="BTSequence" id="BTSequence_chh3m"]
+custom_name = "死亡状态"
+children = [SubResource("BTCheckVar_2cn3e"), SubResource("BTAction_jtcwc"), SubResource("BTPlayAnimation_bmyds")]
+
+[sub_resource type="BTCondition" id="BTCondition_ngh2m"]
+script = ExtResource("1_lii7r")
+
+[sub_resource type="BTAction" id="BTAction_ngh2m"]
+script = ExtResource("2_bmyds")
+
+[sub_resource type="BTAction" id="BTAction_rwdfn"]
+script = ExtResource("2_1k26i")
+
+[sub_resource type="BTSequence" id="BTSequence_jtcwc"]
+custom_name = "受击状态"
+children = [SubResource("BTCondition_ngh2m"), SubResource("BTAction_ngh2m"), SubResource("BTAction_rwdfn")]
+
+[sub_resource type="BTCondition" id="BTCondition_0fmv7"]
+script = ExtResource("1_mp5qs")
+
+[sub_resource type="BTAction" id="BTAction_2cn3e"]
+script = ExtResource("4_2cn3e")
+
+[sub_resource type="BTAction" id="BTAction_1yb3q"]
+script = ExtResource("5_2cn3e")
+
+[sub_resource type="BTAction" id="BTAction_chh3m"]
+script = ExtResource("6_1yb3q")
+
+[sub_resource type="BTAction" id="BTAction_bmyds"]
+script = ExtResource("6_2cn3e")
+
+[sub_resource type="BTSequence" id="BTSequence_bmyds"]
+children = [SubResource("BTAction_2cn3e"), SubResource("BTAction_1yb3q"), SubResource("BTAction_chh3m"), SubResource("BTAction_bmyds")]
+
+[sub_resource type="BTDelay" id="BTDelay_chh3m"]
+seconds = 0.5
+children = [SubResource("BTSequence_bmyds")]
+
+[sub_resource type="BTSequence" id="BTSequence_1yb3q"]
+children = [SubResource("BTCondition_0fmv7"), SubResource("BTDelay_chh3m")]
+
+[sub_resource type="BTCooldown" id="BTCooldown_bmyds"]
+duration = 2.0
+children = [SubResource("BTSequence_1yb3q")]
+
+[sub_resource type="BTSequence" id="BTSequence_0ep58"]
+custom_name = "攻击状态"
+children = [SubResource("BTCooldown_bmyds")]
+
+[sub_resource type="BBNode" id="BBNode_mp5qs"]
+saved_value = NodePath("AnimationPlayer")
+resource_name = "AnimationPlayer"
+
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_0fmv7"]
+animation_player = SubResource("BBNode_mp5qs")
+animation_name = &"idle"
+
+[sub_resource type="BTAction" id="BTAction_lii7r"]
+script = ExtResource("1_4ij78")
+patrol_range = 200.0
+ray_length = 10.0
+edge_check_offset = 15.0
+
+[sub_resource type="BTSequence" id="BTSequence_4ij78"]
+children = [SubResource("BTAction_lii7r")]
+
+[sub_resource type="BTCooldown" id="BTCooldown_mp5qs"]
+duration = 1.0
+children = [SubResource("BTSequence_4ij78")]
+
+[sub_resource type="BTSequence" id="BTSequence_1k26i"]
+custom_name = "巡航状态"
+children = [SubResource("BTPlayAnimation_0fmv7"), SubResource("BTCooldown_mp5qs")]
+
+[sub_resource type="BTDynamicSelector" id="BTDynamicSelector_0ep58"]
+custom_name = "EnemyAi"
+children = [SubResource("BTSequence_chh3m"), SubResource("BTSequence_jtcwc"), SubResource("BTSequence_0ep58"), SubResource("BTSequence_1k26i")]
+
+[resource]
+blackboard_plan = SubResource("BlackboardPlan_bo0je")
+root_task = SubResource("BTDynamicSelector_0ep58")

@@ -1,0 +1,20 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://dx5d0das6f71v"]
+
+[ext_resource type="Script" uid="uid://b56k463eio0v" path="res://Resource/Customize/Skill/SkillScript/skill_1.gd" id="1_1q6po"]
+[ext_resource type="Texture2D" uid="uid://doa1yprsofq6s" path="res://Resource/Customize/Skill/SkillTexture/1.png" id="1_uf27i"]
+
+[resource]
+script = ExtResource("1_1q6po")
+id = "0001"
+name = "蓄能斩击"
+holder = "P1"
+icon = ExtResource("1_uf27i")
+mana_cost = 15
+spir_cost = 0
+cooldown = 10.0
+infomation = "蓄力后向前斩击，蓄力越久伤害越高移速越快。"
+continuetime = 0.0
+sanity_add = 0
+power_up = true
+unlock_required = Array[String]([])
+metadata/_custom_type_script = "uid://d15nhhpajbsee"

@@ -1,0 +1,175 @@
+[gd_resource type="BehaviorTree" load_steps=46 format=3 uid="uid://c16abmf66r3xr"]
+
+[ext_resource type="Script" uid="uid://q2v004dsrq7v" path="res://ai/tasks/navigation/check_area_condition.gd" id="1_4tmw6"]
+[ext_resource type="Script" uid="uid://xjr6wuj3pvhy" path="res://ai/tasks/navigation/navigation_to_point.gd" id="1_eqrw7"]
+[ext_resource type="Script" uid="uid://uugc3fyin6bp" path="res://ai/tasks/is_hit/is_hit.gd" id="1_i2muq"]
+[ext_resource type="Script" uid="uid://jgghn3a61qhr" path="res://ai/tasks/attack/attack_condition.gd" id="1_m7vj8"]
+[ext_resource type="Script" uid="uid://be3jd13jfgfuk" path="res://ai/tasks/is_hit/hit_effect.gd" id="2_0hr6g"]
+[ext_resource type="Script" uid="uid://b7xjkcmafwxww" path="res://ai/tasks/attack/flash_attack.gd" id="2_m7vj8"]
+[ext_resource type="Script" uid="uid://8hhgv5dubu7a" path="res://ai/tasks/navigation/flash_to_player.gd" id="2_vqv00"]
+[ext_resource type="Script" uid="uid://rmk6iomwtvnq" path="res://ai/tasks/navigation/flash_to_source.gd" id="3_gvsse"]
+[ext_resource type="Script" uid="uid://bv5x7ns2wdegh" path="res://ai/tasks/effection/appear_effect.gd" id="4_8dij6"]
+[ext_resource type="Script" uid="uid://get84o2vkaf2" path="res://ai/tasks/navigation/flash_condition_check.gd" id="5_0hr6g"]
+[ext_resource type="Script" uid="uid://cvklp2le525tm" path="res://ai/tasks/effection/dispersed_effect.gd" id="8_dh37a"]
+
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_hu3cp"]
+var/direction/name = &"direction"
+var/direction/type = 5
+var/direction/value = Vector2(0, 0)
+var/direction/hint = 0
+var/direction/hint_string = ""
+var/target/name = &"target"
+var/target/type = 3
+var/target/value = 0.0
+var/target/hint = 0
+var/target/hint_string = ""
+var/hp/name = &"hp"
+var/hp/type = 2
+var/hp/value = 0
+var/hp/hint = 0
+var/hp/hint_string = ""
+var/chase_target/name = &"chase_target"
+var/chase_target/type = 3
+var/chase_target/value = 0.0
+var/chase_target/hint = 0
+var/chase_target/hint_string = ""
+var/source_position/name = &"source_position"
+var/source_position/type = 5
+var/source_position/value = Vector2(0, 0)
+var/source_position/hint = 0
+var/source_position/hint_string = "原位置"
+var/can_flash/name = &"can_flash"
+var/can_flash/type = 1
+var/can_flash/value = false
+var/can_flash/hint = 0
+var/can_flash/hint_string = "判断是否能够闪回"
+var/can_attack/name = &"can_attack"
+var/can_attack/type = 3
+var/can_attack/value = 0.0
+var/can_attack/hint = 0
+var/can_attack/hint_string = ""
+
+[sub_resource type="BBVariant" id="BBVariant_4tmw6"]
+type = 2
+saved_value = 0
+resource_name = "<null>"
+
+[sub_resource type="BTCheckVar" id="BTCheckVar_vqv00"]
+variable = &"hp"
+check_type = 2
+value = SubResource("BBVariant_4tmw6")
+
+[sub_resource type="BBNode" id="BBNode_m7vj8"]
+saved_value = NodePath("AnimationPlayer")
+resource_name = "AnimationPlayer"
+
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_gvsse"]
+animation_player = SubResource("BBNode_m7vj8")
+animation_name = &"death"
+
+[sub_resource type="BTSequence" id="BTSequence_p5neh"]
+custom_name = "死亡"
+children = [SubResource("BTCheckVar_vqv00"), SubResource("BTPlayAnimation_gvsse")]
+
+[sub_resource type="BTCondition" id="BTCondition_dh37a"]
+script = ExtResource("1_i2muq")
+
+[sub_resource type="BTAction" id="BTAction_8dij6"]
+script = ExtResource("2_0hr6g")
+
+[sub_resource type="BTSequence" id="BTSequence_hykqk"]
+custom_name = "受击状态"
+children = [SubResource("BTCondition_dh37a"), SubResource("BTAction_8dij6")]
+
+[sub_resource type="BTCondition" id="BTCondition_p5neh"]
+script = ExtResource("1_m7vj8")
+
+[sub_resource type="BTAction" id="BTAction_qkdns"]
+script = ExtResource("4_8dij6")
+
+[sub_resource type="BTConsolePrint" id="BTConsolePrint_0hr6g"]
+text = "flash attack"
+
+[sub_resource type="BTAction" id="BTAction_5jgbd"]
+script = ExtResource("2_m7vj8")
+
+[sub_resource type="BTDelay" id="BTDelay_0hr6g"]
+seconds = 0.3
+children = [SubResource("BTAction_5jgbd")]
+
+[sub_resource type="BTSequence" id="BTSequence_dh37a"]
+custom_name = "攻击状态"
+children = [SubResource("BTCondition_p5neh"), SubResource("BTAction_qkdns"), SubResource("BTConsolePrint_0hr6g"), SubResource("BTDelay_0hr6g")]
+
+[sub_resource type="BTCondition" id="BTCondition_8dij6"]
+script = ExtResource("5_0hr6g")
+
+[sub_resource type="BTConsolePrint" id="BTConsolePrint_8dij6"]
+text = "flashback"
+
+[sub_resource type="BTAction" id="BTAction_hyb40"]
+script = ExtResource("8_dh37a")
+
+[sub_resource type="BTAction" id="BTAction_0hr6g"]
+script = ExtResource("3_gvsse")
+
+[sub_resource type="BTSequence" id="BTSequence_hpt3d"]
+children = [SubResource("BTAction_0hr6g")]
+
+[sub_resource type="BTDelay" id="BTDelay_m7vj8"]
+children = [SubResource("BTSequence_hpt3d")]
+
+[sub_resource type="BTSequence" id="BTSequence_i2muq"]
+custom_name = "闪回"
+children = [SubResource("BTCondition_8dij6"), SubResource("BTConsolePrint_8dij6"), SubResource("BTAction_hyb40"), SubResource("BTDelay_m7vj8")]
+
+[sub_resource type="BTCondition" id="BTCondition_m7vj8"]
+script = ExtResource("1_4tmw6")
+
+[sub_resource type="BTConsolePrint" id="BTConsolePrint_gvsse"]
+text = "flash
+"
+
+[sub_resource type="BTAction" id="BTAction_p5neh"]
+script = ExtResource("2_vqv00")
+
+[sub_resource type="BTDelay" id="BTDelay_i2muq"]
+seconds = 0.5
+children = [SubResource("BTAction_p5neh")]
+
+[sub_resource type="BTSequence" id="BTSequence_0hr6g"]
+children = [SubResource("BTCondition_m7vj8"), SubResource("BTConsolePrint_gvsse"), SubResource("BTDelay_i2muq")]
+
+[sub_resource type="BTCooldown" id="BTCooldown_dh37a"]
+duration = 3.0
+children = [SubResource("BTSequence_0hr6g")]
+
+[sub_resource type="BTSequence" id="BTSequence_eqrw7"]
+custom_name = "寻敌状态"
+children = [SubResource("BTCooldown_dh37a")]
+
+[sub_resource type="BBNode" id="BBNode_1rqfg"]
+saved_value = NodePath("AnimationPlayer")
+resource_name = "AnimationPlayer"
+
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_c7wdf"]
+animation_player = SubResource("BBNode_1rqfg")
+animation_name = &"idle"
+
+[sub_resource type="BTAction" id="BTAction_hykqk"]
+script = ExtResource("1_eqrw7")
+patrol_range = 200.0
+ray_length = 10.0
+edge_check_offset = 15.0
+
+[sub_resource type="BTSequence" id="BTSequence_v1pmo"]
+custom_name = "巡航状态"
+children = [SubResource("BTPlayAnimation_c7wdf"), SubResource("BTAction_hykqk")]
+
+[sub_resource type="BTDynamicSelector" id="BTDynamicSelector_4tmw6"]
+custom_name = "EnemyAi"
+children = [SubResource("BTSequence_p5neh"), SubResource("BTSequence_hykqk"), SubResource("BTSequence_dh37a"), SubResource("BTSequence_i2muq"), SubResource("BTSequence_eqrw7"), SubResource("BTSequence_v1pmo")]
+
+[resource]
+blackboard_plan = SubResource("BlackboardPlan_hu3cp")
+root_task = SubResource("BTDynamicSelector_4tmw6")

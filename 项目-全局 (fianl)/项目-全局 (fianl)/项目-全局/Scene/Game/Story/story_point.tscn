@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bl68kvhqm0ked"]
+
+[ext_resource type="Script" uid="uid://pmge4227rvis" path="res://Script/Game/Story/story_point.gd" id="1_1smvt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1smvt"]
+size = Vector2(80, 160)
+
+[node name="Story_point" type="Area2D"]
+collision_layer = 128
+collision_mask = 8
+script = ExtResource("1_1smvt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -80)
+shape = SubResource("RectangleShape2D_1smvt")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

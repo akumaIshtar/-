@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Skill" load_steps=2 format=3 uid="uid://clbb27tf5nwns"]
+
+[ext_resource type="Script" uid="uid://d15nhhpajbsee" path="res://Resource/Customize/Skill/skill.gd" id="1_ql8m4"]
+
+[resource]
+script = ExtResource("1_ql8m4")
+id = ""
+name = ""
+holder = ""
+mana_cost = 10
+spir_cost = 0
+cooldown = 2.0
+infomation = ""
+unlock_required = Array[String]([])

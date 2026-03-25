@@ -1,0 +1,72 @@
+[gd_scene load_steps=8 format=3 uid="uid://cuab3ax6cweo1"]
+
+[ext_resource type="Script" uid="uid://bni6pyxqyvdi2" path="res://Script/Skill/skill_node.gd" id="1_1tvj8"]
+[ext_resource type="Shader" uid="uid://du7ychlqefr73" path="res://Resource/Shader/Skill/skill_node_light_shader.gdshader" id="2_1tvj8"]
+[ext_resource type="Shader" uid="uid://bjyhp5k3dyjmj" path="res://Resource/Shader/Skill/skill_node_shader.gdshader" id="3_o5ec0"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_1tvj8"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_o5ec0"]
+noise = SubResource("FastNoiseLite_1tvj8")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o5ec0"]
+shader = ExtResource("2_1tvj8")
+shader_parameter/shine_num = 8.0
+shader_parameter/rotation_speed = 1.5
+shader_parameter/light_magnitude = 2.0
+shader_parameter/filter_distence = 1.0
+shader_parameter/filter_magnitude = 1.0
+shader_parameter/filter_minv = 0.5
+shader_parameter/cut_inner_radius = 0.2
+shader_parameter/color = Color(1, 0.979811, 0.298615, 1)
+shader_parameter/NOISE = SubResource("NoiseTexture2D_o5ec0")
+shader_parameter/NOISE_speed = Vector2(0.2, 0.2)
+shader_parameter/NOISE_magnitude = 0.15
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rre8c"]
+resource_local_to_scene = true
+shader = ExtResource("3_o5ec0")
+shader_parameter/is_unlocked = false
+shader_parameter/feather_radius = 0.9
+shader_parameter/edge_alpha = 0.0
+shader_parameter/locked_brightness = 0.3
+shader_parameter/locked_tint = Color(0.466181, 0.466181, 0.466181, 1)
+
+[node name="SkillNode" type="Node2D"]
+script = ExtResource("1_1tvj8")
+
+[node name="Light" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_o5ec0")
+custom_minimum_size = Vector2(150, 150)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -36.0
+offset_top = -36.0
+offset_right = 36.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ChooseButton" type="TextureButton" parent="."]
+material = SubResource("ShaderMaterial_rre8c")
+custom_minimum_size = Vector2(72, 72)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -24.0
+offset_right = 24.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+ignore_texture_size = true
+stretch_mode = 0
+
+[connection signal="pressed" from="ChooseButton" to="." method="_on_choose_button_pressed"]

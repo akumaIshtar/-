@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbxn8u5lddkm5"]
+
+[ext_resource type="Script" uid="uid://bxlrcbd034w4p" path="res://Script/Item/save_area.gd" id="1_fanoy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iofjq"]
+size = Vector2(160, 455)
+
+[node name="SaveArea" type="Area2D"]
+collision_mask = 8
+script = ExtResource("1_fanoy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -227.5)
+shape = SubResource("RectangleShape2D_iofjq")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

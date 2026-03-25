@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dtadcndece4fx"]
+
+[ext_resource type="Script" uid="uid://cbe31hqpg4o8n" path="res://Script/Game/Global/panel_manager.gd" id="1_dqljg"]
+
+[node name="PanelManager" type="Node"]
+process_mode = 3
+script = ExtResource("1_dqljg")

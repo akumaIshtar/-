@@ -1,0 +1,19 @@
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://e2a73wjbs7i"]
+
+[ext_resource type="FontFile" uid="uid://xkneq0iar0rr" path="res://Resource/Font/FZOUYXKSJW.TTF" id="1_lmmd1"]
+[ext_resource type="StyleBox" uid="uid://dfkq4uklouiq7" path="res://Resource/Theme/StyleBoxTexture/SBT_white_trans_2.tres" id="2_36k1u"]
+[ext_resource type="StyleBox" uid="uid://oc0sg8an7leq" path="res://Resource/Theme/StyleBoxTexture/SBT_white_2.tres" id="3_5bkv2"]
+[ext_resource type="StyleBox" uid="uid://bfhcfaxwasb6p" path="res://Resource/Theme/StyleBoxTexture/SBT_black_1.tres" id="4_4gcas"]
+
+[resource]
+Button/colors/font_color = Color(0, 0, 0, 1)
+Button/font_sizes/font_size = 24
+Button/fonts/font = ExtResource("1_lmmd1")
+Button/styles/disabled = ExtResource("2_36k1u")
+Button/styles/focus = ExtResource("3_5bkv2")
+Button/styles/hover = ExtResource("3_5bkv2")
+Button/styles/normal = ExtResource("2_36k1u")
+Button/styles/pressed = ExtResource("3_5bkv2")
+Label/font_sizes/font_size = 20
+Label/fonts/font = ExtResource("1_lmmd1")
+PanelContainer/styles/panel = ExtResource("4_4gcas")

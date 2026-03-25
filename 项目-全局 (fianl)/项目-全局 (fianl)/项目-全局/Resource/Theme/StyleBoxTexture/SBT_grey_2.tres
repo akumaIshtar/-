@@ -1,0 +1,11 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://c8gkd1l3shw13"]
+
+[ext_resource type="Texture2D" uid="uid://dr7msbe834okr" path="res://Resource/Texture/PanelTexture/panel-015.png" id="1_khej8"]
+
+[resource]
+texture = ExtResource("1_khej8")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+modulate_color = Color(0.498039, 0.498039, 0.498039, 1)

@@ -1,0 +1,18 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://b0a88jvwxv7ku"]
+
+[ext_resource type="Texture2D" uid="uid://dnui7rot4il23" path="res://Resource/Customize/Skill/SkillTexture/4.png" id="1_4n1ek"]
+[ext_resource type="Script" uid="uid://ujd3c151mfln" path="res://Resource/Customize/Skill/SkillScript/skill_4.gd" id="1_qoy2q"]
+
+[resource]
+script = ExtResource("1_qoy2q")
+id = "0004"
+name = ""
+holder = "P1"
+icon = ExtResource("1_4n1ek")
+mana_cost = 30
+spir_cost = 0
+sanity_add = 1
+cooldown = 6.0
+infomation = "向最近一名敌人发射一个威力强大的魔法弹"
+unlock_required = Array[String]([])
+metadata/_custom_type_script = "uid://d15nhhpajbsee"

@@ -1,0 +1,8 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dp2uka24lf0gf"]
+
+[ext_resource type="Script" uid="uid://bxlweiablphk4" path="res://Resource/Customize/Item/inventory.gd" id="1_moaet"]
+
+[resource]
+script = ExtResource("1_moaet")
+items = Array[Dictionary]([])
+max_storage = 36

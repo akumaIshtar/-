@@ -1,0 +1,40 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dd03t5dpuvycc"]
+
+[ext_resource type="Script" uid="uid://c3mdk6e7mnu4f" path="res://Resource/Customize/Story/story_resource.gd" id="1_mflrs"]
+
+[resource]
+script = ExtResource("1_mflrs")
+story_dict = {
+0: {
+0: {
+1: {
+"time": 1.0,
+"type": "still"
+},
+2: {
+"content": "这是最后一战",
+"time": 2.0,
+"type": "text"
+},
+3: {
+"time": 1.0,
+"type": "still"
+},
+4: {
+"content": "决战",
+"time": 2.0,
+"type": "text"
+}
+}
+}
+}
+init_story_progress = {
+0: {
+0: {
+"complete": false,
+"key": true,
+"name": "故事开始"
+},
+"key": true
+}
+}

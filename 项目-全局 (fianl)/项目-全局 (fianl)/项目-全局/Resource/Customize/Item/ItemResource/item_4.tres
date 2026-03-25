@@ -1,0 +1,17 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://tfxte8qvydup"]
+
+[ext_resource type="Texture2D" uid="uid://carjxqqry5rmh" path="res://Resource/Customize/Item/ItemIcon/4.webp" id="1_fpfg3"]
+[ext_resource type="Script" uid="uid://ysue4xggj2tc" path="res://Resource/Customize/Item/ItemScript/item_4.gd" id="2_tvwhw"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("2_tvwhw")
+id = "0004"
+name = "莲"
+icon = ExtResource("1_fpfg3")
+information = ""
+max_stack = 1
+can_use = false
+can_discard = true
+can_sell = false
+metadata/_custom_type_script = "uid://buwhrvp1cflib"

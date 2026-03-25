@@ -1,0 +1,20 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://eynoqg70mrhs"]
+
+[ext_resource type="Texture2D" uid="uid://dheqg4sy60al4" path="res://Resource/Customize/Skill/SkillTexture/5.png" id="1_ftj1p"]
+[ext_resource type="Script" uid="uid://i80y1kh4ccem" path="res://Resource/Customize/Skill/SkillScript/skill_5.gd" id="1_yhfhr"]
+
+[resource]
+script = ExtResource("1_yhfhr")
+id = "0005"
+name = "燃"
+holder = "P2"
+icon = ExtResource("1_ftj1p")
+mana_cost = 0
+spir_cost = 25
+cooldown = 8.0
+infomation = "驻灵发射三个可以追踪敌人的鸟"
+continuetime = 2.3
+sanity_add = 8
+power_up = false
+unlock_required = Array[String]([])
+metadata/_custom_type_script = "uid://d15nhhpajbsee"

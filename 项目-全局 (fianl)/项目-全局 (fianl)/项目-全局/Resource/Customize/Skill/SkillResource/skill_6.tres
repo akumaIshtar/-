@@ -1,0 +1,20 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://dy3cm147upuyf"]
+
+[ext_resource type="Texture2D" uid="uid://bt1tnwktepl7c" path="res://Resource/Customize/Skill/SkillTexture/6.png" id="1_e6j6w"]
+[ext_resource type="Script" uid="uid://xdafrvunjy1l" path="res://Resource/Customize/Skill/SkillScript/skill_6.gd" id="1_eg4tp"]
+
+[resource]
+script = ExtResource("1_eg4tp")
+id = "0006"
+name = "闪"
+holder = "P2"
+icon = ExtResource("1_e6j6w")
+mana_cost = 0
+spir_cost = 50
+cooldown = 16.0
+infomation = "闪烁到最近敌人面前对其快速攻击"
+continuetime = 1.5
+sanity_add = 20
+power_up = false
+unlock_required = Array[String]([])
+metadata/_custom_type_script = "uid://d15nhhpajbsee"

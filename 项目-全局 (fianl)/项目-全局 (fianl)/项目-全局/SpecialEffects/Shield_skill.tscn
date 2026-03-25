@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://h5gbcjgy3utj"]
+
+[ext_resource type="Shader" uid="uid://cnqddloqkii0i" path="res://protect_skill.gdshader" id="1_7n6pw"]
+[ext_resource type="Texture2D" uid="uid://dcb4kw4d160bp" path="res://icon.svg" id="2_vak6k"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5kh1u"]
+shader = ExtResource("1_7n6pw")
+shader_parameter/rotation_speed = 2.0
+shader_parameter/glow_intensity = 4.26
+shader_parameter/center_transparency = 0.53
+shader_parameter/arc_width = 6.905
+shader_parameter/arc_intensity = 0.585
+shader_parameter/particle_count = 16.395
+shader_parameter/particle_speed = 0.1
+
+[node name="protect_skill" type="Node2D"]
+
+[node name="Shield" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_5kh1u")
+texture = ExtResource("2_vak6k")

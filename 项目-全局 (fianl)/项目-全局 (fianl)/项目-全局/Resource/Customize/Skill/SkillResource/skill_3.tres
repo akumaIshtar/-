@@ -1,0 +1,18 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://5wft7bi2kg2c"]
+
+[ext_resource type="Script" uid="uid://b5fp40slvfhgf" path="res://Resource/Customize/Skill/SkillScript/skill_3.gd" id="1_wn6pc"]
+[ext_resource type="Texture2D" uid="uid://bvhrukobdh8go" path="res://Resource/Customize/Skill/SkillTexture/3.png" id="1_xhvdb"]
+
+[resource]
+script = ExtResource("1_wn6pc")
+id = "0003"
+name = "除孽"
+holder = "P1"
+icon = ExtResource("1_xhvdb")
+mana_cost = 50
+spir_cost = 0
+sanity_add = 1
+cooldown = 12.0
+infomation = "引导后向前释放剑气"
+unlock_required = Array[String]([])
+metadata/_custom_type_script = "uid://d15nhhpajbsee"

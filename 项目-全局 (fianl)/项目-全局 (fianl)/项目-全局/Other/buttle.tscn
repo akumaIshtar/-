@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://bnf4i5wdwi3jm"]
+
+[ext_resource type="Script" uid="uid://c76lctl5vpn2p" path="res://buttle.gd" id="1_1pbra"]
+[ext_resource type="SpriteFrames" uid="uid://dx7wju4p6ular" path="res://SpecialEffects/SpecialEffectPlayer.tres" id="2_1gj8t"]
+[ext_resource type="Script" uid="uid://em20nxe7mcrg" path="res://HitBox.gd" id="3_1gj8t"]
+[ext_resource type="Shader" uid="uid://cnqddloqkii0i" path="res://protect_skill.gdshader" id="4_uo2ur"]
+[ext_resource type="Texture2D" uid="uid://dcb4kw4d160bp" path="res://icon.svg" id="5_jnt8k"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qwhjs"]
+shader = ExtResource("4_uo2ur")
+shader_parameter/rotation_speed = 1.025
+shader_parameter/glow_intensity = 110.0
+shader_parameter/center_transparency = 0.74
+shader_parameter/arc_width = 8.55
+shader_parameter/arc_intensity = 0.81
+shader_parameter/particle_count = 29.0
+shader_parameter/particle_speed = 0.1
+
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("attack")]
+position = Vector2(3, -55)
+script = ExtResource("1_1pbra")
+attack = NodePath("HitBox/Attack")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+light_mask = 1023
+position = Vector2(1, 1)
+rotation = -0.00188504
+scale = Vector2(0.626385, 0.619616)
+sprite_frames = ExtResource("2_1gj8t")
+animation = &"yu"
+
+[node name="HitBox" type="Area2D" parent="."]
+position = Vector2(-1, 1)
+collision_layer = 8
+collision_mask = 64
+script = ExtResource("3_1gj8t")
+metadata/_custom_type_script = "uid://em20nxe7mcrg"
+
+[node name="Attack" type="CollisionShape2D" parent="HitBox"]
+disabled = true
+
+[node name="Shield" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_qwhjs")
+position = Vector2(-5, 7.00002)
+scale = Vector2(0.71875, 0.734375)
+texture = ExtResource("5_jnt8k")

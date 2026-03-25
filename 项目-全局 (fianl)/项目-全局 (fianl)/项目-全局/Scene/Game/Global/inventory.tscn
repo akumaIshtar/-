@@ -1,0 +1,52 @@
+[gd_scene load_steps=2 format=3 uid="uid://csee7u73gdt20"]
+
+[sub_resource type="GDScript" id="GDScript_w3h7t"]
+script/source = "#=================================================================
+# 将背包ui中的信息保存作为玩家库存
+#=================================================================
+class_name Inventory
+extends Node
+#=================================================================
+signal slot_updated(index)# 槽位更新信号
+var slots: Array = []
+var slot_count: int = 32
+var player_id: String
+var save_path: String
+#=================================================================
+# 初始化时加载数据
+func _ready():
+	load_packbag()
+
+# 初次使用初始化槽位
+func initialize_slots():
+	slots.resize(slot_count)
+	for i in range(slot_count):
+		slots[i] = {\"item_name\": \"\", \"amount\": 0}
+
+# 设置槽位数据并保存
+func set_slot(index: int, item_name: String, amount: int) -> void:
+	if index < 0 or index >= slots.size():
+		push_error(\"无效的槽位索引：\", index)
+		return
+	var max_stack = 99
+	if amount > max_stack:
+		amount = max_stack
+	elif amount < 0:
+		amount = 0
+	
+	slots[index] = {
+		\"item_name\": item_name,
+		\"amount\": amount
+	}
+	emit_signal(\"slot_updated\", index)
+	save_packbag()
+
+func save_packbag() -> void:
+	pass
+
+func load_packbag() -> void:
+	pass
+"
+
+[node name="inventory" type="Node"]
+script = SubResource("GDScript_w3h7t")

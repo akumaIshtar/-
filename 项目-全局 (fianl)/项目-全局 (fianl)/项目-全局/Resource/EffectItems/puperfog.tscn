@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://dwlrjd3ha5l54"]
+
+[ext_resource type="Script" uid="uid://bfed3wi65j2w7" path="res://Script/Character/Enemy/PhantomStriker/puperfog.gd" id="1_i7to1"]
+
+[sub_resource type="Gradient" id="Gradient_i7to1"]
+offsets = PackedFloat32Array(0, 0.198529, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.239144, 7.48953e-05, 0.239499, 1, 0.445529, 0.000139531, 0.446191, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_jjy27"]
+gradient = SubResource("Gradient_i7to1")
+
+[sub_resource type="Curve" id="Curve_20uin"]
+_data = [Vector2(0, 0.52809), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_amj2x"]
+curve = SubResource("Curve_20uin")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_34wl5"]
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 100.0
+emission_ring_inner_radius = 80.0
+emission_ring_cone_angle = 0.0
+spread = 180.0
+initial_velocity_min = 50.0
+initial_velocity_max = 80.0
+gravity = Vector3(0, 0, 0)
+scale_max = 5.0
+scale_curve = SubResource("CurveTexture_amj2x")
+color = Color(0.587868, 0.000275115, 0.594465, 1)
+color_ramp = SubResource("GradientTexture1D_jjy27")
+
+[node name="Puperfog" type="Node2D"]
+script = ExtResource("1_i7to1")
+
+[node name="PuperFog" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 500
+one_shot = true
+explosiveness = 0.5
+process_material = SubResource("ParticleProcessMaterial_34wl5")

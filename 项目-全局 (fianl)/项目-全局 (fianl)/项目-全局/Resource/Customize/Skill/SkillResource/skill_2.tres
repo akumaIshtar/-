@@ -1,0 +1,18 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://kisbigi1ihpg"]
+
+[ext_resource type="Texture2D" uid="uid://cultokyrorqwm" path="res://Resource/Customize/Skill/SkillTexture/2.png" id="1_likvj"]
+[ext_resource type="Script" uid="uid://2jwfacnm7tb0" path="res://Resource/Customize/Skill/SkillScript/skill_2.gd" id="2_4r37b"]
+
+[resource]
+script = ExtResource("2_4r37b")
+id = "0002"
+name = "护盾打击"
+holder = "P1"
+icon = ExtResource("1_likvj")
+mana_cost = 20
+spir_cost = 0
+sanity_add = 2
+cooldown = 15.0
+infomation = "为角色生成一个可持续对近距离敌人造成伤害的护盾"
+unlock_required = Array[String]([])
+metadata/_custom_type_script = "uid://d15nhhpajbsee"

@@ -1,0 +1,61 @@
+[gd_scene load_steps=3 format=3 uid="uid://bc5eleruw8j4x"]
+
+[ext_resource type="Theme" uid="uid://e2a73wjbs7i" path="res://Resource/Theme/Themes/ui_theme_2.tres" id="1_hq1qd"]
+[ext_resource type="Script" uid="uid://i4pddg8amf78" path="res://Script/Game/UI/die_panel.gd" id="2_xk0ij"]
+
+[node name="DiePanel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_hq1qd")
+script = ExtResource("2_xk0ij")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.125911, 0.125911, 0.125911, 1)
+
+[node name="V" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_right = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="Label" type="Label" parent="V"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 100
+text = "你死了"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="V" type="VBoxContainer" parent="V"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 16
+
+[node name="RestartButton" type="Button" parent="V/V"]
+layout_mode = 2
+size_flags_vertical = 4
+text = "重生"
+
+[node name="ExitButton" type="Button" parent="V/V"]
+layout_mode = 2
+size_flags_vertical = 4
+text = "回到主菜单"
+
+[connection signal="pressed" from="V/V/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="V/V/ExitButton" to="." method="_on_exit_button_pressed"]

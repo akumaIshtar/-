@@ -1,0 +1,52 @@
+[gd_scene load_steps=4 format=3 uid="uid://jvc75qfvlj04"]
+
+[ext_resource type="Theme" uid="uid://cwyf2tyjj5c8p" path="res://Resource/Theme/Themes/ui_theme_1.tres" id="1_6o8mp"]
+[ext_resource type="Script" uid="uid://sfpm4wgkmqfx" path="res://Script/Game/UI/option_panel.gd" id="1_q3o32"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_atcmp"]
+bg_color = Color(0, 0, 0, 0.184314)
+
+[node name="OptionPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_6o8mp")
+script = ExtResource("1_q3o32")
+
+[node name="OptionPanel" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_atcmp")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="OptionPanel"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="CancelButton" type="Button" parent="OptionPanel/VBoxContainer"]
+custom_minimum_size = Vector2(200, 32)
+layout_mode = 2
+text = "继续"
+
+[node name="SetButton" type="Button" parent="OptionPanel/VBoxContainer"]
+custom_minimum_size = Vector2(100, 32)
+layout_mode = 2
+text = "设置"
+
+[node name="ExitButton" type="Button" parent="OptionPanel/VBoxContainer"]
+custom_minimum_size = Vector2(100, 32)
+layout_mode = 2
+text = "退出"
+
+[connection signal="button_up" from="OptionPanel/VBoxContainer/CancelButton" to="." method="_on_cancel_button_button_up"]
+[connection signal="button_up" from="OptionPanel/VBoxContainer/SetButton" to="." method="_on_set_button_button_up"]
+[connection signal="button_up" from="OptionPanel/VBoxContainer/ExitButton" to="." method="_on_exit_button_button_up"]

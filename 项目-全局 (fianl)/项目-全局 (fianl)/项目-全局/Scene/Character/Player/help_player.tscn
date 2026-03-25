@@ -1,0 +1,63 @@
+[gd_scene load_steps=8 format=3 uid="uid://but65j78fqpg3"]
+
+[ext_resource type="Script" uid="uid://wlrpdfq7unm0" path="res://Scene/Character/help_player.gd" id="1_dhv18"]
+[ext_resource type="PackedScene" uid="uid://bwl1qina05oi" path="res://Scene/Character/Player/female_model.tscn" id="2_fvmej"]
+[ext_resource type="Script" uid="uid://chtk2lak7ep7p" path="res://Script/Character/Other/state_machine.gd" id="3_fvmej"]
+[ext_resource type="Script" uid="uid://em20nxe7mcrg" path="res://HitBox.gd" id="4_a6pm6"]
+[ext_resource type="SpriteFrames" uid="uid://dx7wju4p6ular" path="res://SpecialEffects/SpecialEffectPlayer.tres" id="5_f0qp4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f0qp4"]
+size = Vector2(57, 58)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a6pm6"]
+size = Vector2(1150, 649)
+
+[node name="Help_Player" type="CharacterBody2D"]
+script = ExtResource("1_dhv18")
+metadata/_custom_type_script = "uid://d34fsa04dl232"
+
+[node name="player" type="Node2D" parent="."]
+
+[node name="Node2D" parent="player" instance=ExtResource("2_fvmej")]
+position = Vector2(49, -53)
+rotation = 3.14159
+scale = Vector2(0.1, -0.1)
+
+[node name="Marker2D" type="Marker2D" parent="player"]
+position = Vector2(0, -54)
+
+[node name="Marker2D2" type="Marker2D" parent="player"]
+position = Vector2(-51, -24)
+
+[node name="Marker2D3" type="Marker2D" parent="player"]
+position = Vector2(44, -25)
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("3_fvmej")
+metadata/_custom_type_script = "uid://chtk2lak7ep7p"
+
+[node name="HitBox" type="Area2D" parent="."]
+position = Vector2(-1, 1)
+collision_layer = 8
+collision_mask = 64
+script = ExtResource("4_a6pm6")
+metadata/_custom_type_script = "uid://em20nxe7mcrg"
+
+[node name="Attack" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(44.5, -16)
+shape = SubResource("RectangleShape2D_f0qp4")
+disabled = true
+
+[node name="Attack_all" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(2, -18)
+shape = SubResource("RectangleShape2D_a6pm6")
+disabled = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(0, -1.00002)
+scale = Vector2(2.17188, 1.90234)
+sprite_frames = ExtResource("5_f0qp4")
+animation = &"ex"
+frame = 36
+frame_progress = 1.0

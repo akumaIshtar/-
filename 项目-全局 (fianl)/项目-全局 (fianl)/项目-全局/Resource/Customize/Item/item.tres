@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://cl040x6tbby3h"]
+
+[ext_resource type="Script" uid="uid://buwhrvp1cflib" path="res://Resource/Customize/Item/item.gd" id="1_rci17"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_rci17")
+id = ""
+name = ""
+information = ""
+max_stack = 1
+can_use = false
+can_discard = true
+can_sell = false

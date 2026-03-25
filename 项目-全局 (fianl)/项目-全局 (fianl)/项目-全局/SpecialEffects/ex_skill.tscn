@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://xgd83dfmuryq"]
+
+[ext_resource type="SpriteFrames" uid="uid://dx7wju4p6ular" path="res://SpecialEffects/SpecialEffectPlayer.tres" id="2_daai5"]
+
+[node name="ex_skill" type="Node2D"]
+
+[node name="lock" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_daai5")
+animation = &"ex_skill_lock"
+frame = 19
+frame_progress = 1.0

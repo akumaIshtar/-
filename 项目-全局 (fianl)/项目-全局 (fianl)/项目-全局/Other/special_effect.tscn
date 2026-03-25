@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://b7eyusievci2f"]
+
+[ext_resource type="Shader" uid="uid://wbcunhbxyo8x" path="res://ex_skill.gdshader" id="1_wvfmo"]
+[ext_resource type="Texture2D" uid="uid://dbyhnp36cbsgq" path="res://icon.svg" id="2_fgdap"]
+[ext_resource type="Script" uid="uid://2s04xexco35v" path="res://ex_skill.gd" id="3_sgifi"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6sg7p"]
+shader = ExtResource("1_wvfmo")
+shader_parameter/time = 1.0
+shader_parameter/speed = 5.0
+shader_parameter/density = 10.0
+shader_parameter/blade_width = 0.02
+
+[node name="SpecialEffect" type="Node2D"]
+
+[node name="ex_skill" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_6sg7p")
+position = Vector2(580, 319)
+scale = Vector2(9.04684, 5.05809)
+texture = ExtResource("2_fgdap")
+script = ExtResource("3_sgifi")

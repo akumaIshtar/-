@@ -1,0 +1,17 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://d35vvys76wqd3"]
+
+[ext_resource type="Texture2D" uid="uid://jmb57e240bnc" path="res://Resource/Customize/Item/ItemIcon/3.webp" id="1_ab28j"]
+[ext_resource type="Script" uid="uid://pq87vvhgs81t" path="res://Resource/Customize/Item/ItemScript/item_3.gd" id="2_l6fti"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("2_l6fti")
+id = "0003"
+name = "陨"
+icon = ExtResource("1_ab28j")
+information = ""
+max_stack = 8
+can_use = true
+can_discard = true
+can_sell = false
+metadata/_custom_type_script = "uid://buwhrvp1cflib"

@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://6pcua2viy85u"]
+
+[ext_resource type="Texture2D" uid="uid://dwnbq0wtl5cud" path="res://Resource/Map/platform/platform.png" id="1_v13k1"]
+[ext_resource type="Script" uid="uid://b8qxed8epl6q4" path="res://Script/Game/Map/platform.gd" id="1_wiu8y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wiu8y"]
+size = Vector2(64, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bxkom"]
+size = Vector2(64, 4)
+
+[node name="Platform" type="StaticBody2D"]
+script = ExtResource("1_wiu8y")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_v13k1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_wiu8y")
+one_way_collision = true
+
+[node name="DisappearTimer" type="Timer" parent="."]
+
+[node name="ReappearTimer" type="Timer" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_bxkom")
+
+[connection signal="timeout" from="DisappearTimer" to="." method="_on_disappear_timer_timeout"]
+[connection signal="timeout" from="ReappearTimer" to="." method="_on_reappear_timer_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

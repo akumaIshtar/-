@@ -1,0 +1,9 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://bq81hn4it8w4s"]
+
+[ext_resource type="Texture2D" uid="uid://07o7rpi67osg" path="res://Resource/Customize/Skill/AttributeTexture/f27d9c0821bda030fcbf10e1162e8e5e.png" id="1_l0krb"]
+
+[resource]
+resource_local_to_scene = true
+atlas = ExtResource("1_l0krb")
+region = Rect2(527, 598, 50, 50)
+filter_clip = true

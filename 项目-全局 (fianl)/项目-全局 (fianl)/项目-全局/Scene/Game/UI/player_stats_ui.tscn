@@ -1,0 +1,204 @@
+[gd_scene load_steps=27 format=3 uid="uid://car3as5ys1inr"]
+
+[ext_resource type="Script" uid="uid://org18usycc16" path="res://Script/Game/UI/player_stats_ui.gd" id="1_f742t"]
+[ext_resource type="Texture2D" uid="uid://d0yvt06lcimyb" path="res://Resource/Texture/BarTexture/左边框.png" id="2_coexv"]
+[ext_resource type="Shader" uid="uid://3xj5yhmv5jax" path="res://Resource/Shader/Skill/skill_cooldown_shader.gdshader" id="2_gj280"]
+[ext_resource type="Texture2D" uid="uid://oygeeiohjxit" path="res://Resource/Texture/BarTexture/左边框填充.png" id="3_o25nj"]
+[ext_resource type="StyleBox" uid="uid://c8pfe0xc3o7bx" path="res://Resource/Theme/StyleBoxTexture/SBT_black_trans_1.tres" id="4_o25nj"]
+[ext_resource type="Texture2D" uid="uid://co21liq7ysotx" path="res://Resource/Texture/BarTexture/右边框.png" id="5_y6e0d"]
+[ext_resource type="Texture2D" uid="uid://c4enwtqr11454" path="res://Resource/Texture/BarTexture/右边框填充.png" id="6_mc8ak"]
+[ext_resource type="Texture2D" uid="uid://b2vfb13vvrom4" path="res://Resource/Texture/BarTexture/血条框.png" id="7_7ubb1"]
+[ext_resource type="Texture2D" uid="uid://dksrja584oefw" path="res://Resource/Texture/BarTexture/血条填充.png" id="8_qoj7l"]
+[ext_resource type="Texture2D" uid="uid://cb4xec1yael8w" path="res://Resource/Texture/BarTexture/理智条底纹.png" id="9_w8dr3"]
+[ext_resource type="Texture2D" uid="uid://342yxvqboieu" path="res://Resource/Texture/BarTexture/理智条框.png" id="10_aqh0k"]
+[ext_resource type="Texture2D" uid="uid://bs5bkdoe8qneg" path="res://Resource/Texture/BarTexture/理智条填充.png" id="11_dcj5c"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_swnrl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7mi3w"]
+atlas = ExtResource("2_coexv")
+region = Rect2(103, 769, 596, 109)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s0p0h"]
+atlas = ExtResource("3_o25nj")
+region = Rect2(104, 770, 548, 78)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nrn8n"]
+shader = ExtResource("2_gj280")
+shader_parameter/progress = 0.0
+shader_parameter/shadow_color = Color(0, 0, 0, 0.7)
+shader_parameter/edge_smoothness = 0.02
+shader_parameter/flash_progress = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f742t"]
+shader = ExtResource("2_gj280")
+shader_parameter/progress = 1.0
+shader_parameter/shadow_color = Color(0, 0, 0, 0.6)
+shader_parameter/edge_smoothness = 0.02
+shader_parameter/flash_progress = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gj280"]
+shader = ExtResource("2_gj280")
+shader_parameter/progress = 1.0
+shader_parameter/shadow_color = Color(0, 0, 0, 0.6)
+shader_parameter/edge_smoothness = 0.02
+shader_parameter/flash_progress = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_garej"]
+shader = ExtResource("2_gj280")
+shader_parameter/progress = 1.0
+shader_parameter/shadow_color = Color(0, 0, 0, 0.6)
+shader_parameter/edge_smoothness = 0.02
+shader_parameter/flash_progress = 0.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0tchr"]
+atlas = ExtResource("5_y6e0d")
+region = Rect2(1501, 769, 596, 109)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7o1ag"]
+atlas = ExtResource("6_mc8ak")
+region = Rect2(1504, 768, 584, 78)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g33kx"]
+atlas = ExtResource("7_7ubb1")
+region = Rect2(506, 488, 1278, 102)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w3fh6"]
+atlas = ExtResource("8_qoj7l")
+region = Rect2(507, 488, 1271, 98)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eup0x"]
+atlas = ExtResource("9_w8dr3")
+region = Rect2(317, 973, 1602, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_et5wl"]
+atlas = ExtResource("10_aqh0k")
+region = Rect2(315, 971, 1607, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cynn0"]
+atlas = ExtResource("11_dcj5c")
+region = Rect2(317, 973, 1602, 31)
+
+[node name="PlayerStatsUI" type="Control"]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_top = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.35, 0.35)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_f742t")
+
+[node name="P" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -300.5
+offset_top = -64.0
+offset_right = 300.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_swnrl")
+
+[node name="V" type="VBoxContainer" parent="P"]
+layout_mode = 2
+
+[node name="H" type="HBoxContainer" parent="P/V"]
+layout_mode = 2
+alignment = 1
+
+[node name="SP_Bar" type="TextureProgressBar" parent="P/V/H"]
+layout_mode = 2
+size_flags_vertical = 8
+step = 0.1
+value = 100.0
+texture_over = SubResource("AtlasTexture_7mi3w")
+texture_progress = SubResource("AtlasTexture_s0p0h")
+
+[node name="H" type="HBoxContainer" parent="P/V/H"]
+layout_mode = 2
+
+[node name="Skill1" type="VBoxContainer" parent="P/V/H/H"]
+layout_mode = 2
+
+[node name="P" type="PanelContainer" parent="P/V/H/H/Skill1"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("4_o25nj")
+
+[node name="Texture" type="TextureRect" parent="P/V/H/H/Skill1/P"]
+material = SubResource("ShaderMaterial_nrn8n")
+custom_minimum_size = Vector2(144, 144)
+layout_mode = 2
+expand_mode = 2
+
+[node name="Skill2" type="VBoxContainer" parent="P/V/H/H"]
+layout_mode = 2
+
+[node name="P" type="PanelContainer" parent="P/V/H/H/Skill2"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("4_o25nj")
+
+[node name="Texture" type="TextureRect" parent="P/V/H/H/Skill2/P"]
+material = SubResource("ShaderMaterial_f742t")
+custom_minimum_size = Vector2(144, 144)
+layout_mode = 2
+expand_mode = 2
+
+[node name="Skill3" type="VBoxContainer" parent="P/V/H/H"]
+layout_mode = 2
+
+[node name="P" type="PanelContainer" parent="P/V/H/H/Skill3"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("4_o25nj")
+
+[node name="Texture" type="TextureRect" parent="P/V/H/H/Skill3/P"]
+material = SubResource("ShaderMaterial_gj280")
+custom_minimum_size = Vector2(144, 144)
+layout_mode = 2
+expand_mode = 2
+
+[node name="Skill4" type="VBoxContainer" parent="P/V/H/H"]
+layout_mode = 2
+
+[node name="P" type="PanelContainer" parent="P/V/H/H/Skill4"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("4_o25nj")
+
+[node name="Texture" type="TextureRect" parent="P/V/H/H/Skill4/P"]
+material = SubResource("ShaderMaterial_garej")
+custom_minimum_size = Vector2(144, 144)
+layout_mode = 2
+expand_mode = 2
+
+[node name="MP_bar" type="TextureProgressBar" parent="P/V/H"]
+layout_mode = 2
+size_flags_vertical = 8
+step = 0.1
+value = 100.0
+texture_over = SubResource("AtlasTexture_0tchr")
+texture_progress = SubResource("AtlasTexture_7o1ag")
+
+[node name="HP_Bar" type="TextureProgressBar" parent="P/V"]
+layout_mode = 2
+size_flags_horizontal = 4
+step = 0.1
+value = 100.0
+texture_over = SubResource("AtlasTexture_g33kx")
+texture_progress = SubResource("AtlasTexture_w3fh6")
+
+[node name="SanityBar" type="TextureProgressBar" parent="P/V"]
+layout_mode = 2
+size_flags_horizontal = 4
+step = 0.1
+texture_under = SubResource("AtlasTexture_eup0x")
+texture_over = SubResource("AtlasTexture_et5wl")
+texture_progress = SubResource("AtlasTexture_cynn0")

@@ -1,0 +1,129 @@
+[gd_scene load_steps=4 format=3 uid="uid://cucelryfqnt23"]
+
+[ext_resource type="Theme" uid="uid://e2a73wjbs7i" path="res://Resource/Theme/Themes/ui_theme_2.tres" id="1_saptf"]
+[ext_resource type="Script" uid="uid://cllgous0yjx24" path="res://Script/Game/UI/record_select_panel.gd" id="1_yvfe0"]
+[ext_resource type="StyleBox" uid="uid://cmk641du22cwe" path="res://Resource/Theme/StyleBoxTexture/SBT_white_empty_1.tres" id="3_3uc7w"]
+
+[node name="RecordSelectPanel" type="Control"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_saptf")
+script = ExtResource("1_yvfe0")
+
+[node name="P" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(600, 300)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -31.0
+offset_right = 16.0
+offset_bottom = 31.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="M" type="MarginContainer" parent="P"]
+layout_mode = 2
+
+[node name="V" type="VBoxContainer" parent="P/M"]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="H" type="HBoxContainer" parent="P/M/V"]
+layout_mode = 2
+alignment = 1
+
+[node name="P1" type="PanelContainer" parent="P/M/V/H"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("3_3uc7w")
+
+[node name="V1" type="VBoxContainer" parent="P/M/V/H/P1"]
+custom_minimum_size = Vector2(160, 200)
+layout_mode = 2
+alignment = 1
+
+[node name="Record1" type="Label" parent="P/M/V/H/P1/V1"]
+layout_mode = 2
+text = "存档 1"
+horizontal_alignment = 1
+
+[node name="RecordInfo1" type="Label" parent="P/M/V/H/P1/V1"]
+layout_mode = 2
+size_flags_vertical = 6
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button1" type="Button" parent="P/M/V/H/P1/V1"]
+custom_minimum_size = Vector2(160, 60)
+layout_mode = 2
+text = "启程"
+
+[node name="P2" type="PanelContainer" parent="P/M/V/H"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("3_3uc7w")
+
+[node name="V2" type="VBoxContainer" parent="P/M/V/H/P2"]
+custom_minimum_size = Vector2(160, 200)
+layout_mode = 2
+alignment = 1
+
+[node name="Record2" type="Label" parent="P/M/V/H/P2/V2"]
+layout_mode = 2
+text = "存档 2"
+horizontal_alignment = 1
+
+[node name="RecordInfo2" type="Label" parent="P/M/V/H/P2/V2"]
+layout_mode = 2
+size_flags_vertical = 6
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button2" type="Button" parent="P/M/V/H/P2/V2"]
+custom_minimum_size = Vector2(160, 60)
+layout_mode = 2
+text = "启程"
+
+[node name="P3" type="PanelContainer" parent="P/M/V/H"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("3_3uc7w")
+
+[node name="V3" type="VBoxContainer" parent="P/M/V/H/P3"]
+custom_minimum_size = Vector2(160, 200)
+layout_mode = 2
+alignment = 1
+
+[node name="Record3" type="Label" parent="P/M/V/H/P3/V3"]
+layout_mode = 2
+text = "存档 3"
+horizontal_alignment = 1
+
+[node name="RecordInfo3" type="Label" parent="P/M/V/H/P3/V3"]
+layout_mode = 2
+size_flags_vertical = 6
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button3" type="Button" parent="P/M/V/H/P3/V3"]
+custom_minimum_size = Vector2(160, 60)
+layout_mode = 2
+text = "启程"
+
+[node name="BackButton" type="Button" parent="P/M/V"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "返回"
+
+[connection signal="pressed" from="P/M/V/H/P1/V1/Button1" to="." method="_on_record_button_pressed" binds= [1]]
+[connection signal="pressed" from="P/M/V/H/P2/V2/Button2" to="." method="_on_record_button_pressed" binds= [2]]
+[connection signal="pressed" from="P/M/V/H/P3/V3/Button3" to="." method="_on_record_button_pressed" binds= [3]]
+[connection signal="pressed" from="P/M/V/BackButton" to="." method="_on_back_button_pressed"]

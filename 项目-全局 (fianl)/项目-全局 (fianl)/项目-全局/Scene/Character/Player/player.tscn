@@ -1,0 +1,115 @@
+[gd_scene load_steps=13 format=3 uid="uid://c5w2sl78mmlj2"]
+
+[ext_resource type="Script" uid="uid://d34fsa04dl232" path="res://Script/Character/Player/player.gd" id="1_8xcb8"]
+[ext_resource type="PackedScene" uid="uid://bdpunadqbi006" path="res://Scene/Character/Player/male_model.tscn" id="2_bubao"]
+[ext_resource type="Script" uid="uid://chtk2lak7ep7p" path="res://Script/Character/Other/state_machine.gd" id="3_0tco1"]
+[ext_resource type="Script" uid="uid://bjl31tirwl1dm" path="res://HurtBox.gd" id="3_bubao"]
+[ext_resource type="Script" uid="uid://em20nxe7mcrg" path="res://HitBox.gd" id="4_1nox1"]
+[ext_resource type="Texture2D" uid="uid://sbo8h7m38akm" path="res://some_ui/Icon.png" id="6_1nox1"]
+[ext_resource type="SpriteFrames" uid="uid://dx7wju4p6ular" path="res://SpecialEffects/SpecialEffectPlayer.tres" id="7_1nox1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bubao"]
+size = Vector2(35, 84)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1nox1"]
+size = Vector2(33, 79)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kvbc0"]
+size = Vector2(96, 113)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kmjhx"]
+size = Vector2(233, 49.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bubao"]
+radius = 41.7612
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 8
+script = ExtResource("1_8xcb8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(4.5, -42)
+shape = SubResource("RectangleShape2D_bubao")
+
+[node name="Graphics" type="Node2D" parent="."]
+
+[node name="MaleModel" parent="Graphics" instance=ExtResource("2_bubao")]
+position = Vector2(-28.9, -111.585)
+scale = Vector2(0.05, 0.05)
+
+[node name="Hurtbox" type="Area2D" parent="Graphics"]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("3_bubao")
+metadata/_custom_type_script = "uid://bjl31tirwl1dm"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Graphics/Hurtbox"]
+position = Vector2(4.5, -40.5)
+shape = SubResource("RectangleShape2D_1nox1")
+
+[node name="HandCheck" type="RayCast2D" parent="Graphics"]
+position = Vector2(0, -57)
+target_position = Vector2(25, 0)
+
+[node name="FootCheck" type="RayCast2D" parent="Graphics"]
+position = Vector2(0, -13)
+target_position = Vector2(25, -1)
+
+[node name="HandCheck2" type="RayCast2D" parent="Graphics"]
+position = Vector2(6, -9)
+target_position = Vector2(1, 22)
+
+[node name="HitBox" type="Area2D" parent="Graphics" node_paths=PackedStringArray("player")]
+collision_layer = 8
+collision_mask = 64
+script = ExtResource("4_1nox1")
+player = NodePath("../..")
+metadata/_custom_type_script = "uid://em20nxe7mcrg"
+
+[node name="Attack_1" type="CollisionShape2D" parent="Graphics/HitBox"]
+position = Vector2(35, -56.5)
+shape = SubResource("RectangleShape2D_kvbc0")
+disabled = true
+
+[node name="Attack_3" type="CollisionShape2D" parent="Graphics/HitBox"]
+position = Vector2(4.5, -51.25)
+shape = SubResource("RectangleShape2D_kmjhx")
+disabled = true
+
+[node name="Skill_1" type="CollisionShape2D" parent="Graphics/HitBox"]
+position = Vector2(8, -42)
+shape = SubResource("CircleShape2D_bubao")
+disabled = true
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("3_0tco1")
+metadata/_custom_type_script = "uid://chtk2lak7ep7p"
+
+[node name="JumpRequestTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="F_Key" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -119)
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("6_1nox1")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(5, -42)
+
+[node name="Player_buttle" type="Marker2D" parent="."]
+position = Vector2(-34, -139)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+light_mask = 1023
+position = Vector2(9.99151, -90.505)
+rotation = -0.00188504
+scale = Vector2(0.19781, 0.421359)
+sprite_frames = ExtResource("7_1nox1")
+animation = &"yu"
+frame = 20
+frame_progress = 1.0
+
+[connection signal="hurt" from="Graphics/Hurtbox" to="." method="_on_hurtbox_hurt"]

@@ -1,0 +1,150 @@
+[gd_scene load_steps=14 format=3 uid="uid://vkux0elhi6cd"]
+
+[ext_resource type="Theme" uid="uid://cwyf2tyjj5c8p" path="res://Resource/Theme/Themes/ui_theme_1.tres" id="1_jyw5d"]
+[ext_resource type="PackedScene" uid="uid://cucelryfqnt23" path="res://Scene/Game/UI/record_select_panel.tscn" id="2_d4llq"]
+[ext_resource type="Shader" uid="uid://56h6h05r2irg" path="res://Resource/Shader/ColorRect/main_ui_background.tres" id="3_dvc26"]
+
+[sub_resource type="GDScript" id="GDScript_jyw5d"]
+script/source = "#================================================================================
+# 主界面
+#================================================================================
+
+extends Control
+
+#================================================================================
+
+@onready var game_data: Node = GameData
+@onready var player_data: Node = GameData.player_data
+@onready var map_data: Node = GameData.map_data
+@onready var record_select_panel: Control = $CanvasLayer/RecordSelectPanel
+
+@export var main_scene :String
+
+var option_mode_window : bool = false
+var option_mode_size : int = 0
+
+#================================================================================
+#退出按键
+func _on_exit_pressed() -> void:
+	get_tree().quit()
+
+#开始按键
+func _on_start_pressed() -> void:
+	record_select_panel.visible = true
+	record_select_panel.mouse_filter = Control.MOUSE_FILTER_STOP
+
+#设置按键
+func _on_set_up_pressed() -> void:
+	game_data.create_setting_panel()
+
+#================================================================================
+"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_jyw5d"]
+noise_type = 4
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dvc26"]
+noise = SubResource("FastNoiseLite_jyw5d")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_03w2t"]
+noise_type = 4
+seed = 100
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_f5axh"]
+noise = SubResource("FastNoiseLite_03w2t")
+
+[sub_resource type="Gradient" id="Gradient_7cwus"]
+colors = PackedColorArray(0, 0, 0, 1, 0.983459, 0.992773, 0.952755, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8ik8y"]
+gradient = SubResource("Gradient_7cwus")
+fill_from = Vector2(0, 1)
+
+[sub_resource type="Gradient" id="Gradient_37ee6"]
+colors = PackedColorArray(0.986863, 0.918522, 0.784338, 1, 0.0237294, 0.259118, 0.363784, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_hsvx2"]
+gradient = SubResource("Gradient_37ee6")
+fill_to = Vector2(1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_03w2t"]
+shader = ExtResource("3_dvc26")
+shader_parameter/Texture2DParameter = SubResource("GradientTexture2D_8ik8y")
+shader_parameter/Texture2DParameter2 = SubResource("GradientTexture2D_hsvx2")
+shader_parameter/Texture1 = SubResource("NoiseTexture2D_dvc26")
+shader_parameter/Texture2 = SubResource("NoiseTexture2D_f5axh")
+
+[node name="MainUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_jyw5d")
+script = SubResource("GDScript_jyw5d")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_03w2t")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameNameLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -263.0
+offset_top = -183.0
+offset_right = 262.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "浸 罪 之 书"
+horizontal_alignment = 1
+
+[node name="Menu" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -24.0
+offset_right = 100.0
+offset_bottom = 212.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+
+[node name="StartButton" type="Button" parent="Menu"]
+custom_minimum_size = Vector2(100, 32)
+layout_mode = 2
+text = "开始"
+expand_icon = true
+
+[node name="SetUpButton" type="Button" parent="Menu"]
+custom_minimum_size = Vector2(100, 32)
+layout_mode = 2
+text = "设置"
+
+[node name="ExitButton" type="Button" parent="Menu"]
+custom_minimum_size = Vector2(100, 32)
+layout_mode = 2
+text = "退出"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="RecordSelectPanel" parent="CanvasLayer" instance=ExtResource("2_d4llq")]
+
+[connection signal="pressed" from="Menu/StartButton" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Menu/SetUpButton" to="." method="_on_set_up_pressed"]
+[connection signal="pressed" from="Menu/ExitButton" to="." method="_on_exit_pressed"]

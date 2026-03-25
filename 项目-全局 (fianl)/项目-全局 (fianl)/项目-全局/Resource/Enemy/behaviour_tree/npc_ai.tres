@@ -1,0 +1,170 @@
+[gd_resource type="BehaviorTree" load_steps=43 format=3 uid="uid://c5atphg0jqs8f"]
+
+[ext_resource type="Script" uid="uid://dplwlu4vyn040" path="res://ai/tasks/navigation/check_vision_condition.gd" id="1_633b5"]
+[ext_resource type="Script" uid="uid://jgghn3a61qhr" path="res://ai/tasks/attack/attack_condition.gd" id="1_27042"]
+[ext_resource type="Script" uid="uid://uugc3fyin6bp" path="res://ai/tasks/is_hit/is_hit.gd" id="1_ro6px"]
+[ext_resource type="Script" uid="uid://be3jd13jfgfuk" path="res://ai/tasks/is_hit/hit_effect.gd" id="2_2ndvd"]
+[ext_resource type="Script" uid="uid://c88a4mnby0wf2" path="res://ai/tasks/navigation/chase_player.gd" id="2_d73bk"]
+[ext_resource type="Script" uid="uid://dlyrru5fq5x57" path="res://ai/tasks/attack/ground_attack.gd" id="2_ro6px"]
+[ext_resource type="Script" uid="uid://xjr6wuj3pvhy" path="res://ai/tasks/navigation/navigation_to_point.gd" id="3_27042"]
+
+[sub_resource type="GDScript" id="GDScript_qwtay"]
+
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_hiy0l"]
+var/direction/name = &"direction"
+var/direction/type = 5
+var/direction/value = Vector2(0, 0)
+var/direction/hint = 0
+var/direction/hint_string = ""
+var/target/name = &"target"
+var/target/type = 3
+var/target/value = 0.0
+var/target/hint = 0
+var/target/hint_string = "攻击目标"
+var/hp/name = &"hp"
+var/hp/type = 2
+var/hp/value = 0
+var/hp/hint = 0
+var/hp/hint_string = "npc生命"
+var/chase_target/name = &"chase_target"
+var/chase_target/type = 3
+var/chase_target/value = 0.0
+var/chase_target/hint = 0
+var/chase_target/hint_string = "追击目标"
+var/can_attack/name = &"can_attack"
+var/can_attack/type = 1
+var/can_attack/value = true
+var/can_attack/hint = 0
+var/can_attack/hint_string = ""
+script = SubResource("GDScript_qwtay")
+
+[sub_resource type="BBVariant" id="BBVariant_eskay"]
+type = 2
+saved_value = 0
+resource_name = "<null>"
+
+[sub_resource type="BTCheckVar" id="BTCheckVar_qwtay"]
+variable = &"hp"
+check_type = 2
+value = SubResource("BBVariant_eskay")
+
+[sub_resource type="BBNode" id="BBNode_1temp"]
+saved_value = NodePath("AnimationPlayer")
+resource_name = "AnimationPlayer"
+
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_hcqae"]
+animation_player = SubResource("BBNode_1temp")
+animation_name = &"death"
+
+[sub_resource type="BTSequence" id="BTSequence_0tj51"]
+custom_name = "被击败"
+children = [SubResource("BTCheckVar_qwtay"), SubResource("BTPlayAnimation_hcqae")]
+
+[sub_resource type="BTCondition" id="BTCondition_i4nhx"]
+script = ExtResource("1_ro6px")
+
+[sub_resource type="BTConsolePrint" id="BTConsolePrint_2ndvd"]
+text = "hit"
+
+[sub_resource type="BTAction" id="BTAction_2ndvd"]
+script = ExtResource("2_2ndvd")
+
+[sub_resource type="BTSequence" id="BTSequence_27042"]
+custom_name = "受击状态"
+children = [SubResource("BTCondition_i4nhx"), SubResource("BTConsolePrint_2ndvd"), SubResource("BTAction_2ndvd")]
+
+[sub_resource type="BTCondition" id="BTCondition_2ndvd"]
+script = ExtResource("1_27042")
+
+[sub_resource type="BTConsolePrint" id="BTConsolePrint_mme7j"]
+text = "Attack
+"
+
+[sub_resource type="BTAction" id="BTAction_i4nhx"]
+script = ExtResource("2_ro6px")
+
+[sub_resource type="BTDelay" id="BTDelay_mme7j"]
+seconds = 0.3
+children = [SubResource("BTAction_i4nhx")]
+
+[sub_resource type="BTSequence" id="BTSequence_mme7j"]
+children = [SubResource("BTConsolePrint_mme7j"), SubResource("BTDelay_mme7j")]
+
+[sub_resource type="BTCooldown" id="BTCooldown_eskay"]
+duration = 0.5
+start_cooled = true
+children = [SubResource("BTSequence_mme7j")]
+
+[sub_resource type="BTSequence" id="BTSequence_1temp"]
+custom_name = "攻击玩家"
+children = [SubResource("BTCondition_2ndvd"), SubResource("BTCooldown_eskay")]
+
+[sub_resource type="BTCondition" id="BTCondition_1temp"]
+script = ExtResource("1_633b5")
+
+[sub_resource type="BTConsolePrint" id="BTConsolePrint_eskay"]
+text = "Chase"
+
+[sub_resource type="BBNode" id="BBNode_mme7j"]
+saved_value = NodePath("AnimationPlayer")
+resource_name = "AnimationPlayer"
+
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_eskay"]
+animation_player = SubResource("BBNode_mme7j")
+animation_name = &"idle"
+
+[sub_resource type="BTAction" id="BTAction_1temp"]
+script = ExtResource("2_d73bk")
+horizontal_stop_range = 10.0
+
+[sub_resource type="BTDelay" id="BTDelay_dgu18"]
+seconds = 0.5
+children = [SubResource("BTAction_1temp")]
+
+[sub_resource type="BTSequence" id="BTSequence_dgu18"]
+children = [SubResource("BTConsolePrint_eskay"), SubResource("BTPlayAnimation_eskay"), SubResource("BTDelay_dgu18")]
+
+[sub_resource type="BTCooldown" id="BTCooldown_rmsn6"]
+duration = 1.0
+children = [SubResource("BTSequence_dgu18")]
+
+[sub_resource type="BTSequence" id="BTSequence_hcqae"]
+custom_name = "追踪玩家"
+children = [SubResource("BTCondition_1temp"), SubResource("BTCooldown_rmsn6")]
+
+[sub_resource type="BTDynamicSelector" id="BTDynamicSelector_2ndvd"]
+children = [SubResource("BTSequence_1temp"), SubResource("BTSequence_hcqae")]
+
+[sub_resource type="BBNode" id="BBNode_633b5"]
+saved_value = NodePath("AnimationPlayer")
+resource_name = "AnimationPlayer"
+
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_d73bk"]
+animation_player = SubResource("BBNode_633b5")
+animation_name = &"idle"
+
+[sub_resource type="BTAction" id="BTAction_eskay"]
+custom_name = "来回巡航"
+script = ExtResource("3_27042")
+patrol_range = 200.0
+ray_length = 10.0
+edge_check_offset = 15.0
+
+[sub_resource type="BTSequence" id="BTSequence_633b5"]
+children = [SubResource("BTAction_eskay")]
+
+[sub_resource type="BTCooldown" id="BTCooldown_27042"]
+duration = 1.0
+children = [SubResource("BTSequence_633b5")]
+
+[sub_resource type="BTSequence" id="BTSequence_qwtay"]
+custom_name = "巡航状态"
+children = [SubResource("BTPlayAnimation_d73bk"), SubResource("BTCooldown_27042")]
+
+[sub_resource type="BTDynamicSelector" id="BTDynamicSelector_hcqae"]
+custom_name = "Enemy Ai"
+children = [SubResource("BTSequence_0tj51"), SubResource("BTSequence_27042"), SubResource("BTDynamicSelector_2ndvd"), SubResource("BTSequence_qwtay")]
+
+[resource]
+blackboard_plan = SubResource("BlackboardPlan_hiy0l")
+root_task = SubResource("BTDynamicSelector_hcqae")

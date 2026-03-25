@@ -1,0 +1,75 @@
+[gd_scene load_steps=15 format=3 uid="uid://sypmpdyvi2tb"]
+
+[ext_resource type="Script" uid="uid://nyke5fixu0if" path="res://Script/Game/Global/game_data.gd" id="1_f0mkl"]
+[ext_resource type="Script" uid="uid://bwh4aga4dpr6v" path="res://Script/Game/Global/player_data.gd" id="2_upo27"]
+[ext_resource type="Script" uid="uid://dno521prayu05" path="res://Script/Game/Global/story_data.gd" id="3_0dcvf"]
+[ext_resource type="Resource" uid="uid://dd03t5dpuvycc" path="res://Resource/Customize/Story/story_resource.tres" id="4_qjbkl"]
+[ext_resource type="Script" uid="uid://crxbqjwbvjkam" path="res://Script/Game/Global/map_data.gd" id="4_ubenf"]
+[ext_resource type="Script" uid="uid://jsn6dmiy1mbc" path="res://Script/Game/Global/skill_data.gd" id="5_8wqk7"]
+[ext_resource type="Script" uid="uid://db7wyc8rgoaaf" path="res://Script/Game/Global/item_data.gd" id="6_gnt1p"]
+[ext_resource type="Shader" uid="uid://dmvuc7dwds8l3" path="res://Resource/Shader/Item/new_shader.gdshader" id="6_upo27"]
+[ext_resource type="Resource" uid="uid://cw1pcx83xu0qy" path="res://Resource/Customize/Item/item_library.tres" id="7_m586l"]
+[ext_resource type="Resource" uid="uid://cnbcpng747ija" path="res://Resource/Customize/Skill/skill_tree_data.tres" id="7_top58"]
+[ext_resource type="Resource" uid="uid://dp2uka24lf0gf" path="res://Resource/Customize/Item/inventory.tres" id="8_qjbkl"]
+[ext_resource type="Script" uid="uid://bj7o8xhdw0jhu" path="res://Script/Game/Global/dialogue_manager.gd" id="10_qjbkl"]
+[ext_resource type="Resource" uid="uid://dwl3xl64c8rxp" path="res://Resource/Customize/Dialogue/dialogue_resource.tres" id="11_07a4i"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kfxuk"]
+shader = ExtResource("6_upo27")
+shader_parameter/resolution = Vector2(320, 180)
+shader_parameter/scan_line_amount = 0.5
+shader_parameter/warp_amount = 0.05
+shader_parameter/vignette_amount = 0.5
+shader_parameter/vignette_intensity = 0.3
+shader_parameter/grille_amount = 0.05
+shader_parameter/brightness_boost = 1.2
+
+[node name="GameData" type="Node"]
+process_mode = 3
+script = ExtResource("1_f0mkl")
+
+[node name="PlayerData" type="Node" parent="."]
+script = ExtResource("2_upo27")
+
+[node name="StoryData" type="Node" parent="."]
+script = ExtResource("3_0dcvf")
+story_resource = ExtResource("4_qjbkl")
+
+[node name="MapData" type="Node" parent="."]
+script = ExtResource("4_ubenf")
+
+[node name="SkillData" type="Node" parent="."]
+script = ExtResource("5_8wqk7")
+skill_tree_data = ExtResource("7_top58")
+
+[node name="ItemData" type="Node" parent="."]
+script = ExtResource("6_gnt1p")
+item_lib = ExtResource("7_m586l")
+inventory = ExtResource("8_qjbkl")
+
+[node name="DialogueManager" type="Node" parent="."]
+script = ExtResource("10_qjbkl")
+diag_resource = ExtResource("11_07a4i")
+
+[node name="Canvas" type="CanvasLayer" parent="."]
+layer = 100
+
+[node name="ChangeSceneRect" type="ColorRect" parent="Canvas"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Canvas"]
+visible = false
+top_level = true
+material = SubResource("ShaderMaterial_kfxuk")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://3n2yp1t4csa2"]
+
+[ext_resource type="Script" uid="uid://cjiy7t0dhp28e" path="res://Script/Item/pick_item.gd" id="1_qr7t5"]
+[ext_resource type="Texture2D" uid="uid://c4nk3xp0axw3p" path="res://Resource/Customize/Item/ItemIcon/1.webp" id="2_ty2f1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7c5d4"]
+radius = 40.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bt412"]
+radius = 20.0
+
+[node name="PickItem" type="Node2D"]
+script = ExtResource("1_qr7t5")
+
+[node name="Texture" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_ty2f1")
+
+[node name="AttractArea" type="Area2D" parent="."]
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttractArea"]
+shape = SubResource("CircleShape2D_7c5d4")
+
+[node name="CollectArea" type="Area2D" parent="."]
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollectArea"]
+shape = SubResource("CircleShape2D_bt412")
+
+[connection signal="body_entered" from="AttractArea" to="." method="_on_attract_area_body_entered"]
+[connection signal="body_entered" from="CollectArea" to="." method="_on_collect_area_body_entered"]

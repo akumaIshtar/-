@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://dr135how0kssl"]
+
+[ext_resource type="SpriteFrames" uid="uid://dx7wju4p6ular" path="res://SpecialEffects/SpecialEffectPlayer.tres" id="1_1ce5c"]
+[ext_resource type="Script" uid="uid://wmurocwrxynk" path="res://buttle_p_2.gd" id="1_drndi"]
+[ext_resource type="Script" uid="uid://em20nxe7mcrg" path="res://HitBox.gd" id="2_drndi"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uucpg"]
+radius = 28.0179
+
+[node name="Node2D" type="Node2D"]
+show_behind_parent = true
+script = ExtResource("1_drndi")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+light_mask = 1023
+position = Vector2(1.90735e-06, 1)
+rotation = -0.00188504
+scale = Vector2(0.550888, 0.604681)
+sprite_frames = ExtResource("1_1ce5c")
+animation = &"helper_bullet"
+frame_progress = 0.274127
+
+[node name="HitBox" type="Area2D" parent="."]
+position = Vector2(-1, 1)
+collision_layer = 8
+collision_mask = 64
+script = ExtResource("2_drndi")
+metadata/_custom_type_script = "uid://em20nxe7mcrg"
+
+[node name="Attack" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(2, 0)
+shape = SubResource("CircleShape2D_uucpg")
+
+[node name="Playerboom" type="AnimatedSprite2D" parent="."]
+position = Vector2(-90, -33)
+rotation = 1.91986
+scale = Vector2(0.7, 0.988281)
+sprite_frames = ExtResource("1_1ce5c")
+animation = &"player_bullet"
+
+[node name="boomboom" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 0.999996)
+scale = Vector2(0.137207, 0.141602)
+sprite_frames = ExtResource("1_1ce5c")
+animation = &"flash"
+frame_progress = 0.289293

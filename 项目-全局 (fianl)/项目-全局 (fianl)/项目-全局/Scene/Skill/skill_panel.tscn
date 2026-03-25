@@ -1,0 +1,180 @@
+[gd_scene load_steps=6 format=3 uid="uid://cs5ly1rmo6nd3"]
+
+[ext_resource type="Theme" uid="uid://e2a73wjbs7i" path="res://Resource/Theme/Themes/ui_theme_2.tres" id="1_7yf4f"]
+[ext_resource type="PackedScene" uid="uid://cnx383shf2b25" path="res://Scene/Skill/skill_slot.tscn" id="1_irsn0"]
+[ext_resource type="Script" uid="uid://bix1a563slij7" path="res://Script/Skill/skill_panel.gd" id="1_lbfit"]
+[ext_resource type="StyleBox" uid="uid://cmk641du22cwe" path="res://Resource/Theme/StyleBoxTexture/SBT_white_empty_1.tres" id="4_rk0ca"]
+[ext_resource type="StyleBox" uid="uid://c8pfe0xc3o7bx" path="res://Resource/Theme/StyleBoxTexture/SBT_black_trans_1.tres" id="5_ejq30"]
+
+[node name="SkillPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_7yf4f")
+script = ExtResource("1_lbfit")
+p1_name = "徐将军"
+p2_name = "艾莉"
+
+[node name="H" type="HSplitContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+split_offset = 600
+
+[node name="P" type="PanelContainer" parent="H"]
+layout_mode = 2
+
+[node name="V" type="VBoxContainer" parent="H/P"]
+layout_mode = 2
+
+[node name="H2" type="HBoxContainer" parent="H/P/V"]
+layout_mode = 2
+alignment = 1
+
+[node name="CharacterName" type="Label" parent="H/P/V/H2"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 36
+text = "CharacterName"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CharacterChangeButton" type="Button" parent="H/P/V/H2"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+focus_mode = 0
+text = "切换为辅助角色"
+
+[node name="H" type="HBoxContainer" parent="H/P/V"]
+layout_mode = 2
+alignment = 1
+
+[node name="S1" type="VBoxContainer" parent="H/P/V/H"]
+layout_mode = 2
+
+[node name="SkillSlot" parent="H/P/V/H/S1" instance=ExtResource("1_irsn0")]
+layout_mode = 2
+slot_id = 0
+
+[node name="SkillName" type="Label" parent="H/P/V/H/S1"]
+layout_mode = 2
+size_flags_vertical = 1
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SkillKey" type="Label" parent="H/P/V/H/S1"]
+layout_mode = 2
+text = "E"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="S2" type="VBoxContainer" parent="H/P/V/H"]
+layout_mode = 2
+
+[node name="SkillSlot" parent="H/P/V/H/S2" instance=ExtResource("1_irsn0")]
+layout_mode = 2
+slot_id = 1
+
+[node name="SkillName" type="Label" parent="H/P/V/H/S2"]
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SkillKey" type="Label" parent="H/P/V/H/S2"]
+layout_mode = 2
+text = "R"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="S3" type="VBoxContainer" parent="H/P/V/H"]
+layout_mode = 2
+
+[node name="SkillSlot" parent="H/P/V/H/S3" instance=ExtResource("1_irsn0")]
+layout_mode = 2
+slot_id = 2
+
+[node name="SkillName" type="Label" parent="H/P/V/H/S3"]
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SkillKey" type="Label" parent="H/P/V/H/S3"]
+layout_mode = 2
+text = "T"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="S4" type="VBoxContainer" parent="H/P/V/H"]
+layout_mode = 2
+
+[node name="SkillSlot" parent="H/P/V/H/S4" instance=ExtResource("1_irsn0")]
+layout_mode = 2
+slot_id = 3
+
+[node name="SkillName" type="Label" parent="H/P/V/H/S4"]
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SkillKey" type="Label" parent="H/P/V/H/S4"]
+layout_mode = 2
+text = "Q"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="P" type="PanelContainer" parent="H/P/V"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="V" type="VBoxContainer" parent="H/P/V/P"]
+layout_mode = 2
+
+[node name="H" type="HBoxContainer" parent="H/P/V/P/V"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="P" type="PanelContainer" parent="H/P/V/P/V/H"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("4_rk0ca")
+
+[node name="SelectedSkillTexture" type="TextureRect" parent="H/P/V/P/V/H/P"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+expand_mode = 2
+
+[node name="SelectedSkillName" type="Label" parent="H/P/V/P/V/H"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+
+[node name="EquipButton" type="Button" parent="H/P/V/P/V/H"]
+visible = false
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+
+[node name="SelectedSkillInfo" type="Label" parent="H/P/V/P/V"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/normal = ExtResource("4_rk0ca")
+
+[node name="GraphEdit" type="ScrollContainer" parent="H"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("5_ejq30")
+horizontal_scroll_mode = 0
+
+[node name="SkillArray" type="GridContainer" parent="H/GraphEdit"]
+layout_mode = 2
+columns = 5
+
+[connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
+[connection signal="pressed" from="H/P/V/H2/CharacterChangeButton" to="." method="_on_character_change_button_pressed"]
+[connection signal="pressed" from="H/P/V/P/V/H/EquipButton" to="." method="_on_equip_button_pressed"]

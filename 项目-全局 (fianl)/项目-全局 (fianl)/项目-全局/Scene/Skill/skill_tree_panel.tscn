@@ -1,0 +1,115 @@
+[gd_scene load_steps=18 format=3 uid="uid://bf1t0nuj6lxqj"]
+
+[ext_resource type="Script" uid="uid://ca3cmx3tipwk8" path="res://Script/Skill/skill_tree_panel.gd" id="1_ckdck"]
+[ext_resource type="Resource" uid="uid://cnbcpng747ija" path="res://Resource/Customize/Skill/skill_tree_data.tres" id="2_v1b2c"]
+[ext_resource type="Curve" uid="uid://cavkt8564rtd4" path="res://Resource/Curve/skill_tree_line_curve.tres" id="3_334pk"]
+[ext_resource type="Gradient" uid="uid://bdhojcwrpnwtv" path="res://Resource/Gradient/skill_node_line_gradient_1.tres" id="5_gq48p"]
+[ext_resource type="Gradient" uid="uid://b5tpnr6finbr4" path="res://Resource/Gradient/skill_node_line_gradient_2.tres" id="5_k1amm"]
+[ext_resource type="Shader" uid="uid://56h6h05r2irg" path="res://Resource/Shader/ColorRect/main_ui_background.tres" id="6_458yx"]
+[ext_resource type="Script" uid="uid://dk5uf4ag3lsei" path="res://Script/Skill/skill_tree_camera.gd" id="6_k1amm"]
+[ext_resource type="Theme" uid="uid://e2a73wjbs7i" path="res://Resource/Theme/Themes/ui_theme_2.tres" id="7_458yx"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_nfwho"]
+noise_type = 5
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_kpkdx"]
+noise = SubResource("FastNoiseLite_nfwho")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_v6ohq"]
+noise_type = 5
+seed = 5
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_yo0bv"]
+noise = SubResource("FastNoiseLite_v6ohq")
+
+[sub_resource type="Gradient" id="Gradient_458yx"]
+colors = PackedColorArray(0.178052, 0.931053, 0.459693, 1, 0.364302, 0.924196, 0.999239, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_nfwho"]
+gradient = SubResource("Gradient_458yx")
+fill_from = Vector2(0.48, 0.455)
+fill_to = Vector2(0.52, 0.545)
+
+[sub_resource type="Gradient" id="Gradient_kpkdx"]
+colors = PackedColorArray(7.27978e-07, 0.307947, 0, 1, 0.00745018, 0.154206, 0.271656, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_v6ohq"]
+gradient = SubResource("Gradient_kpkdx")
+fill_from = Vector2(0.48, 0.455)
+fill_to = Vector2(0.52, 0.545)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_458yx"]
+shader = ExtResource("6_458yx")
+shader_parameter/Texture2DParameter = SubResource("GradientTexture2D_nfwho")
+shader_parameter/Texture2DParameter2 = SubResource("GradientTexture2D_v6ohq")
+shader_parameter/Texture1 = SubResource("NoiseTexture2D_kpkdx")
+shader_parameter/Texture2 = SubResource("NoiseTexture2D_yo0bv")
+
+[node name="SkillTreePanel" type="Node2D"]
+top_level = true
+z_index = 100
+z_as_relative = false
+script = ExtResource("1_ckdck")
+skill_tree_data = ExtResource("2_v1b2c")
+metadata/LineCurve = ExtResource("3_334pk")
+metadata/LineGradient1 = ExtResource("5_gq48p")
+metadata/LineGradient2 = ExtResource("5_k1amm")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+unique_name_in_owner = true
+z_index = 1
+material = SubResource("ShaderMaterial_458yx")
+custom_minimum_size = Vector2(2000, 2000)
+offset_left = -1000.0
+offset_top = -1000.0
+offset_right = 1000.0
+offset_bottom = 1000.0
+mouse_filter = 2
+color = Color(0, 0, 0.0745098, 1)
+
+[node name="SkillTreeCamera" type="Camera2D" parent="."]
+zoom = Vector2(1.5, 1.5)
+script = ExtResource("6_k1amm")
+
+[node name="Lines" type="CanvasGroup" parent="."]
+z_index = 2
+
+[node name="Nodes" type="Node2D" parent="."]
+z_index = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="LeftPointLabel" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="SkillInfoPanel" type="PanelContainer" parent="CanvasLayer"]
+visible = false
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 0
+grow_vertical = 2
+theme = ExtResource("7_458yx")
+
+[node name="V" type="VBoxContainer" parent="CanvasLayer/SkillInfoPanel"]
+layout_mode = 2
+
+[node name="SkillName" type="Label" parent="CanvasLayer/SkillInfoPanel/V"]
+custom_minimum_size = Vector2(80, 30)
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SkillDescription" type="Label" parent="CanvasLayer/SkillInfoPanel/V"]
+layout_mode = 2
+
+[node name="UnlockButton" type="Button" parent="CanvasLayer/SkillInfoPanel/V"]
+layout_mode = 2
+size_flags_horizontal = 8
+focus_mode = 0
+
+[connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
+[connection signal="pressed" from="CanvasLayer/SkillInfoPanel/V/UnlockButton" to="." method="_on_unlock_button_pressed"]

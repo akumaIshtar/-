@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cnbcpng747ija"]
+
+[ext_resource type="Script" uid="uid://ci4ha7phxkxhj" path="res://Resource/Customize/Skill/skill_tree_data.gd" id="1_jcaxp"]
+
+[resource]
+script = ExtResource("1_jcaxp")
